@@ -10,12 +10,9 @@ public class Zadatak4 {
         String boja= "Crna";
         double velicina = 46.5;
 
-        System.out.println("Sifra proizvoda: " + sifraProizvoda);
-        System.out.print("Naziv proizvoda: " + nazivProizvoda);
-        System.out.print("Cena: $ " + cena);
-        System.out.println("popust: % " + popust);
-        System.out.print("Boja: "+ boja);
-        System.out.print("Velicina: " + velicina);
+        System.out.println(sifraProizvoda);
+        System.out.println(nazivProizvoda + "- $" + cena + "- Popust " + popust + "%");
+        System.out.println(boja + ", " + velicina);
 
     }
 }
