@@ -1,159 +1,137 @@
 package p08_09_2023;
 
 public class Auto {
-
-    public String vozac;
-    public String marka;
-    public int brojVrata;
-    public double potrosnjaNa100km;
-    public int trenutnaBrzina;
-    public int registrovanDo;
-    public int godinaProizvodnje;
-    public int kubikaza;
-    public boolean ukljucenaKlima;
-    public String registracija;
-    public int maxBrzina;
+        public String vozac;
+        public String marka;
+        public int brojVrata;
+        public double potrosnja;
+        public int brzina;
 
 
-    public boolean stampaj() {
-        System.out.println(this.vozac);
-        System.out.println(this.marka + " - " + this.brojVrata + "-ro vrata");
-        System.out.println("Sa potrosnjom od " + this.potrosnjaNa100km + " l na 100km");
-        System.out.println(this.trenutnaBrzina + "km/h je trenutna brzina.");
-        System.out.println("Cena registracije " + this.cenaRegistracije);
-        System.out.println("Old timer " + this.oldiTmer);
-
-
-        public boolean jePrekoracio ( int ogranicenje){
-            return this.trenutnaBrzina > ogranicenje;
-        }
-        //83, 80 => 3 * 1000;
-        //public int kazna (int ogranicenje) {
-        // if (this.jePrekoracio(ogranicenje)) {
-        // return (this.trenutna.Brzina - ogranicenje)*1000
-        // } return 0;
-        // }
-
-        public double novcanaKazna ( int ogranicenjeBrzine){
-            if (this.jePrekoracio(ogranicenjeBrzine)) {
-                double razlika = this.trenutnaBrzina - ogranicenjeBrzine;
-                return razlika * 1000.00;
-            }
-            return 0.0;
-
-            public boolean oldiTmer () {
-                return this.godinaProizvodnje < 1950;
-            }
-            //if (this.godinaProizvodnje < 1950) {
-            // return true;
-            // } else {
-            // return false;
-            //}
-
-            public boolean registrovan ( int trenutniMesec){
-                return this.registrovanDo < trenutniMesec;
-            }
-
-            // if (this.registrovanDo < trenutniMesec) {
-            //   return true;
-            // } else {
-            //    return false;
-            //  }
-
-            public double cenaRegistracije () {
-                double cena = this.kubikaza * 100.0;
-                if (this.kubikaza > 2000) {
-                    cena = cena * 1.3;
-                }
-                return cena;
-            }
-
-            public void dodajGas () {
-                int brzina = this.trenutnaBrzina + 10;
-                if (brzina < this.maxBrzina) {
-                    this.trenutnaBrzina += 10;
-                } else {
-                    this.trenutnaBrzina = this.maxBrzina;
-                }
-            }
-
-            public void koci () {
-                int brzina = this.trenutnaBrzina - 10;
-                if (brzina > 0) {
-                    this.trenutnaBrzina = brzina;
-                } else {
-                    this.trenutnaBrzina = 0;
-                }
-            }
-
-            public double racunajFaktorKlime () {
-                double faktorKlime = 1.0;
-                if (this.ukljucenaKlima) {
-                    faktorKlime = 1.2;
-                }
-                return faktorKlime;
-            }
-
-            public double trenutnaPotrosnja () {
-                double klima = 1.0;
-                if (ukljucenaKlima) {
-                    klima = 1.2;
-                }
-                return (this.trenutnaBrzina / 100 * this.potrosnjaNa100km) * klima;
-            }
-
-            public void stampajTablu () {
-                int brzina = (this.trenutnaBrzina * 100) / this.maxBrzina;
-                for (int i = 0; i < 100; i++) {
-                    if (i < brzina) {
-                        System.out.println("|");
-                    } else {
-                        System.out.println(".");
-                    }
-                }
-                System.out.println(this.trenutnaBrzina + " / " + this.maxBrzina + "km/h");
-            }
+        public void stampa() {
+            System.out.println(this.vozac);
+            System.out.println(this.marka + " - " + this.brojVrata + "-ro vrata");
+            System.out.println("Sa potrosnjom od " + this.potrosnja + " L na 100 km");
+            System.out.println(this.brzina + " km/h je trenutna brzina");
         }
 
-    }
+        /*
+        (Dopuna 1)
+                U okviru klase Auto, implementirati jos 2 metode:
+                metoda koja vraca informaciju da li je vozac prekoracio brzinu.
+                Kao parametar metode se prima ogranicenje (kao broj) a metoda vraca
+                true ili false ako je trenutna brzina veca od ogranicenja.
+                metoda koja vraca visinu novcane kazne za prekoracenje, za svaku
+                jedinicu prekoracenja placa se 1000din. Metoda od parametara prima
+                ogranicenje brzine
+                U glavnom programu pozvati ove metode i odstmpajte neke poruke na
+                osnovu informacija koje dobijete od njih.
+         */
+        public boolean prekoracenje(int limit) {
+            return this.brzina > limit;
+        }
 
-    public boolean jePrekoracio(int ogranicenjeNaPutu) {
-        return false;
-    }
+        public int kazna(int limit) {
+            if (this.prekoracenje(limit)) {
+                return (this.brzina - limit) * 1000;
 
-    public Object dodajgas(){
-        return null;
-    }
+            }
+            return 0;
+        }
 
-    public Object koci(){
-        return null;
-    }
+    /*
+    (Dopuna 2)
+    Dopuniti klasu Auto tako da ima:
+    atribut godinu proizvodnje
+    atribut mesec do kad je registrovan auto (int)
+    atribut kubikaza auta (npr: 1600 - 5000)
+    metodu koja vraca da li je auto oldtimer, svaki auto proizveden pre 1950 je oldtimer.
+    metodu koja vraca da li je istekla registracije.
+    Metoda kao parametar prima trenutni mesec i na osnovu toga vraca true ili false.
+    metodu koja racuna i vraca cenu registracije za auto. Za automobile do 2000
+    kubika cena registracije kubikaza * 100din, za automobile preko 2000 kubika
+    dodatno se uracunava 30% na cenu.
+     */
 
-    public String novcanaKazna(int ogranicenjeNaPutu) {
-        return null;
-    }
+        public int godinaProizvodnje;
+        public int mesecIstekaRegistracije;
 
-    public boolean odlTimer() {
-        return false;
-    }
+        public int kubikaza;
 
-    public boolean registrovan(int i) {
-        return null;
-    }
+        public boolean oldtajmer() {
+            return this.godinaProizvodnje < 1950;
+        }
 
-    public String cenaRegistracije() {
-        return null;
-    }
+        public boolean isteklaRegistracija(int trenutniMesec) {
+            return this.mesecIstekaRegistracije < trenutniMesec;
+        }
 
-    public String trenutnaPotrosnja() {
-        return null;
-    }
+        public double cenaRegistracije() {
+            double cena = this.kubikaza * 100;
+            if (this.kubikaza > 2000)
+                cena *= 1.3;
 
-    public Object stampajTablu() {
-        return null;
-    }
+            return cena;
+        }
 
-    public boolean registrovanDo(int i) {
-        return false;
+    /*
+    (Dopuna 3)
+    Dopuniti klasu Auto tako da ima:
+    atribut broj registracije
+    da li je ukljucena klima u autu
+    metodu dodajGas, koja povecava trenutnu brzinu za 10.
+    metodu koci, koja smanjuje brzinu za 10. Brzina ne moze da ode ispod nule.
+    metodu koja racuna i vraca trenutnu potrosnju auta. Metoda racuna po formuli:
+    faktor klime - ako je ukljucena klima faktor je 1.2, ako nije ukljucena onda je 1.0
+    (trenutna brzina / 100.0 * potrosnja na 100km) * faktor klime
+     */
+
+        public String brojRegistracije;
+        public boolean ukljucenaKlima;
+
+
+        public void koci() {
+            if (brzina >= 10)
+                this.brzina -= 10;
+
+            else this.brzina = 0;
+        }
+
+        public double izracunajPotrosnju() {
+            double faktorKlime = 1.0;
+
+            if (this.ukljucenaKlima)
+                faktorKlime = 1.2;
+            return this.brzina / 100 * this.potrosnja * faktorKlime;
+        }
+
+    /*
+    Dopuniti klasu Auto tako da ima:
+    atribut za maksimalnu brzinu na auto (npr: 240)
+    Promenite metodu dodajGas tako da povecanje brzine ne bude preko maksimalne brzine auta
+    metodu stampajTablu koja stampa brzinomer sa table. Brzinomer uvek ima 100 jedinica za prikaz brzine.
+    Ako je npr maksimalna brzina 240 i auto je u trenutnoj brzini 100, metoda stampa
+                   |||||||||||||||||||||||||||||||||||||||||..................................................................... 100/240km/h
+    (objasnjenje: ovde imamo 41 crticu koja oznacava brzinu 100km/h i imamo 59 tackica koje oznacavaju ostatak do maksimalne brzine)
+    Broj crtica se racuna po formuli: (trenutna brzina * 100) / maksimalna brzina.
+     */
+
+        public int maxBrzina;
+
+        public void dodajGas() {
+            if (this.brzina <= this.maxBrzina - 10)
+                this.brzina += 10;
+
+            else this.brzina = this.maxBrzina;
+        }
+
+        public void stampajTablu() {
+            int limit = this.brzina * 100 / this.maxBrzina;
+            for (int i = 0; i < 100; i++) {
+                if (i < limit) {
+                    System.out.print("|");
+                } else System.out.print(".");
+            }
+            System.out.print(this.brzina + "/" + this.maxBrzina + "km/h");
+        }
     }
-}

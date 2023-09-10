@@ -3,64 +3,53 @@ package p08_09_2023;
 public class Zadatak2 {
     public static void main(String[] args) {
 
-        Auto auto = new Auto();
-        auto.vozac = "Pera Peric";
-        auto.marka = "VW";
-        auto.brojVrata = 5;
-        auto.potrosnjaNa100km = 5.4;
-        auto.trenutnaBrzina = 100;
-        auto.marka = "BMW";
-        auto.kubikaza = 2000;
-        auto.registrovanDo = 8;
-        auto.godinaProizvodnje = 1940;
-        auto.registracija = "NI125KK";
-        auto.ukljucenaKlima = true;
-        auto.maxBrzina = 240;
 
-        auto.stampaj();
+        Auto prviAuto = new Auto();
+        prviAuto.vozac = "Marko Petrovic";
+        prviAuto.marka = "Skoda";
+        prviAuto.brojVrata = 4;
+        prviAuto.potrosnja = 3.6;
+        prviAuto.godinaProizvodnje = 2000;
+        prviAuto.mesecIstekaRegistracije = 10;
+        prviAuto.kubikaza = 2000;
+        prviAuto.brzina = 150;
+        prviAuto.maxBrzina = 200;
 
-        int ogranicenjeNaPutu = 130;
-        int trenutniMesec = 9;
 
-        auto.stampaj();
+        prviAuto.stampa();
 
-        if (auto.jePrekoracio(ogranicenjeNaPutu)) {
-            System.out.println("Auto je prekoracio brzinu. Novcana kazna je: "+ auto.novcanaKazna(ogranicenjeNaPutu));
-        } else {
-            System.out.println("Nije prekoracio brzinu.");
+        if(prviAuto.prekoracenje(100)){
+            System.out.println("Prekoracio je brzinu");
+            System.out.println("Kazna je "+prviAuto.kazna(100)+" din");
         }
+        else System.out.println("Nema prekoracenja");
 
-        if (auto.odlTimer()) {
-            System.out.println("Auto je old timer.");
+
+
+        if(prviAuto.oldtajmer()){
+            System.out.println("Automobil je oldtajmer");
         }
+        else System.out.println("Automobil nije oldtajmer");
 
-        if (auto.registrovanDo(9)) {
-            System.out.println("Jos uvek vazi registracija");
-        } else {
-            System.out.println("Registracija je istekla");
+        if(prviAuto.isteklaRegistracija(12)){
+            System.out.println("Cena registracije auta je: "+prviAuto.cenaRegistracije());
         }
+        else System.out.println("Nije istekla registracija");
 
-        System.out.println("Cena registracije "+ auto.cenaRegistracije());
 
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
-        auto.dodajgas();
+        prviAuto.dodajGas();
+        prviAuto.dodajGas();
+        prviAuto.dodajGas();
+        prviAuto.dodajGas();
+        prviAuto.dodajGas();
+        prviAuto.dodajGas();
 
-        auto.koci();
+        prviAuto.koci();
 
-        System.out.println("Trenutna potrosnja "+ auto.trenutnaPotrosnja());
+        System.out.println("Trenutna potrosnja je: "+prviAuto.izracunajPotrosnju());
 
-        auto.stampajTablu();
+        prviAuto.stampajTablu();
+
+
     }
 }
